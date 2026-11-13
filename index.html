@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز البشير - PS4 GoldHEN Host</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* خلفية الموقع باستخدام الصورة الخاصة بك - تأكد أن الصورة بنفس المجلد واسمها مطابق */
+            background-image: url('33623_2.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: brightness(0.7);
+        }
+
+        .header-banner {
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ffcc;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .header-banner h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            color: #25D366;
+            text-decoration: none;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: 1px solid #25D366;
+        }
+
+        .contact-info:hover {
+            background: #25D366;
+            color: #000;
+        }
+
+        .location-tag {
+            margin-top: 8px;
+            color: #ffcc00;
+            font-size: 1.1rem;
+        }
+
+        .host-container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 90%;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .host-title {
+            font-size: 1.5rem;
+            color: #00ffcc;
+            margin-bottom: 25px;
+        }
+
+        #msgs {
+            font-size: 1.6rem;
+            color: #ffeb3b;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
+            line-height: 1.5;
+        }
+
+        .credits {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #bbb;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .credits a {
+            color: #f31414;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- لافتة مركز البشير -->
+    <div class="header-banner">
+        <h1>مركز البشير</h1>
+        <a href="https://wa.me/963932733116" class="contact-info" target="_blank">
+            <span>WhatsApp: 0932733116</span>
+        </a>
+        <div class="location-tag">📍 المكان: عند الجامع الكبير</div>
+    </div>
+
+    <!-- صندوق ثغرة PS4 GoldHEN المنسوخ من GamerHack -->
+    <div class="host-container">
+        <div class="host-title">PS4 [5.05] 7.00 - 14.00 FW GoldHEN Host</div>
+        <hr style="border-color: rgba(0, 255, 204, 0.3); margin-bottom: 30px;">
+        
+        <div id="msgs">Loading GoldHEN v2.4b18.13... Please Wait</div>
+
+        <div class="credits">
+            Special Thanks to: 
+            <a href="https://twitter.com/_AlAzif" target="_blank">@_AlAzif</a> 
+            ChendoChap 
+            <a href="https://x.com/Kameleonre_" target="_blank">@Kameleonre_</a> 
+            SiSTR0 Abc
+        </div>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة © مركز البشير
+    </footer>
+
+    <!-- سكربت فحص الثغرة الأصلي من GamerHack -->
+    <script>
+    var uaFull = navigator.userAgent;
+    var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+    var isPS4 = match !== null;
+    var fwVersion = isPS4 ? match[1] : "Unknown";
+    var fwNum = parseFloat(fwVersion);
+
+    function onScriptError() {
+        msgs.innerHTML = "Content not Found! - Clear Browser Data and Re-Install Cache ...";
+    }
+
+    if (!isPS4) {
+        document.addEventListener("DOMContentLoaded", () => {
+            msgs.innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 14.00";
+        });
+    } else {
+        if (window.applicationCache && window.applicationCache.status == '0') {
+            if (fwNum == 5.05 || fwNum == 5.07) {
+                window.location.replace("cache505.html");
+            } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                window.location.replace("cache700.html");
+            } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                window.location.replace("cache900.html");
+            } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                window.location.replace("cachecss.html");
+            } else if (fwNum >= 11.50 && fwNum <= 14.00) {
+                window.location.replace("cacheslopkit.html");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
+                });
+            }
+        } else {
+            if (fwNum == 5.05 || fwNum == 5.07) {
+                var script = document.createElement('script');
+                script.src = "505/exploit.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 7.00 && fwNum <= 8.52) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "700/alert.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 9.00 && fwNum <= 9.60) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "900/alert.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 10.00 && fwNum <= 11.02) {
+                var script = document.createElement('script');
+                script.src = "css/main.js";
+                script.onerror = onScriptError;
+                script.onload = function () {
+                    setTimeout(function () {
+                        if (typeof doJb === 'function') doJb();
+                    }, 500);
+                };
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 11.50 && fwNum <= 12.02) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/chain_lapse.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 12.50 && fwNum <= 13.00) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/chain_poops.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum >= 13.02 && fwNum <= 13.52) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/jb.js?v=19";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+            else if (fwNum == 14.00) {
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = "slopkit/jb2.js";
+                script.onerror = onScriptError;
+                document.head.appendChild(script);
+            }
+        }
+    }
+    </script>
+</body>
+</html>
